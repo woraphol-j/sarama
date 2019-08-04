@@ -14,7 +14,7 @@ func (r *LeaveGroupResponse) decode(pd packetDecoder, version int16) (err error)
 	if err != nil {
 		return err
 	}
-	r.Err = KError(kerr)
+	r.Err = KErrorWithStacktrace(kerr)
 
 	return nil
 }

@@ -27,7 +27,7 @@ func (a *AddOffsetsToTxnResponse) decode(pd packetDecoder, version int16) (err e
 	if err != nil {
 		return err
 	}
-	a.Err = KError(kerr)
+	a.Err = KErrorWithStacktrace(kerr)
 
 	return nil
 }

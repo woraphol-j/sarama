@@ -70,8 +70,10 @@ Consumer related metrics:
 package sarama
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
+	"runtime/debug"
 )
 
 var (
@@ -103,4 +105,13 @@ type StdLogger interface {
 	Print(v ...interface{})
 	Printf(format string, v ...interface{})
 	Println(v ...interface{})
+}
+
+func KErrorWithStacktrace(errInt int16) KError {
+	err := KError(errInt)
+	if err != ErrNoError {
+		fmt.Printf("Kafka server error: %+v \n", err)
+		debug.PrintStack()
+	}
+	return err
 }

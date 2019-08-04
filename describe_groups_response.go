@@ -94,7 +94,7 @@ func (gd *GroupDescription) decode(pd packetDecoder) (err error) {
 		return err
 	}
 
-	gd.Err = KError(kerr)
+	gd.Err = KErrorWithStacktrace(kerr)
 
 	if gd.GroupId, err = pd.getString(); err != nil {
 		return

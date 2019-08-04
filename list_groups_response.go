@@ -29,7 +29,7 @@ func (r *ListGroupsResponse) decode(pd packetDecoder, version int16) error {
 		return err
 	}
 
-	r.Err = KError(kerr)
+	r.Err = KErrorWithStacktrace(kerr)
 
 	n, err := pd.getArrayLength()
 	if err != nil {

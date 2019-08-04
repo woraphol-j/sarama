@@ -54,7 +54,7 @@ func (d *DeleteTopicsResponse) decode(pd packetDecoder, version int16) (err erro
 			return err
 		}
 
-		d.TopicErrorCodes[topic] = KError(errorCode)
+		d.TopicErrorCodes[topic] = KErrorWithStacktrace(errorCode)
 	}
 
 	return nil

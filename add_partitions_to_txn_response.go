@@ -104,7 +104,7 @@ func (p *PartitionError) decode(pd packetDecoder, version int16) (err error) {
 	if err != nil {
 		return err
 	}
-	p.Err = KError(kerr)
+	p.Err = KErrorWithStacktrace(kerr)
 
 	return nil
 }

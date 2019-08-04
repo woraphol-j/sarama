@@ -14,7 +14,7 @@ func (r *HeartbeatResponse) decode(pd packetDecoder, version int16) error {
 	if err != nil {
 		return err
 	}
-	r.Err = KError(kerr)
+	r.Err = KErrorWithStacktrace(kerr)
 
 	return nil
 }

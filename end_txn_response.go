@@ -26,7 +26,7 @@ func (e *EndTxnResponse) decode(pd packetDecoder, version int16) (err error) {
 	if err != nil {
 		return err
 	}
-	e.Err = KError(kerr)
+	e.Err = KErrorWithStacktrace(kerr)
 
 	return nil
 }

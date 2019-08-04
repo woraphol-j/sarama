@@ -51,7 +51,7 @@ func (r *DeleteGroupsResponse) decode(pd packetDecoder, version int16) error {
 			return err
 		}
 
-		r.GroupErrorCodes[groupID] = KError(errorCode)
+		r.GroupErrorCodes[groupID] = KErrorWithStacktrace(errorCode)
 	}
 
 	return nil

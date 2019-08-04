@@ -43,7 +43,7 @@ func (d *DescribeAclsResponse) decode(pd packetDecoder, version int16) (err erro
 	if err != nil {
 		return err
 	}
-	d.Err = KError(kerr)
+	d.Err = KErrorWithStacktrace(kerr)
 
 	errmsg, err := pd.getString()
 	if err != nil {

@@ -12,7 +12,7 @@ func (b *OffsetResponseBlock) decode(pd packetDecoder, version int16) (err error
 	if err != nil {
 		return err
 	}
-	b.Err = KError(tmp)
+	b.Err = KErrorWithStacktrace(tmp)
 
 	if version == 0 {
 		b.Offsets, err = pd.getInt64Array()

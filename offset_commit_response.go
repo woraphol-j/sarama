@@ -79,7 +79,7 @@ func (r *OffsetCommitResponse) decode(pd packetDecoder, version int16) (err erro
 			if err != nil {
 				return err
 			}
-			r.Errors[name][id] = KError(tmp)
+			r.Errors[name][id] = KErrorWithStacktrace(tmp)
 		}
 	}
 

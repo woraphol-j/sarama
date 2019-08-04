@@ -90,7 +90,7 @@ func (f *FilterResponse) decode(pd packetDecoder, version int16) (err error) {
 	if err != nil {
 		return err
 	}
-	f.Err = KError(kerr)
+	f.Err = KErrorWithStacktrace(kerr)
 
 	if f.ErrMsg, err = pd.getNullableString(); err != nil {
 		return err
@@ -141,7 +141,7 @@ func (m *MatchingAcl) decode(pd packetDecoder, version int16) (err error) {
 	if err != nil {
 		return err
 	}
-	m.Err = KError(kerr)
+	m.Err = KErrorWithStacktrace(kerr)
 
 	if m.ErrMsg, err = pd.getNullableString(); err != nil {
 		return err

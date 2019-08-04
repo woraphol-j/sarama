@@ -44,7 +44,7 @@ func (b *FetchResponseBlock) decode(pd packetDecoder, version int16) (err error)
 	if err != nil {
 		return err
 	}
-	b.Err = KError(tmp)
+	b.Err = KErrorWithStacktrace(tmp)
 
 	b.HighWaterMarkOffset, err = pd.getInt64()
 	if err != nil {

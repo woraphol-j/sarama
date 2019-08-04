@@ -16,7 +16,7 @@ func (r *SaslHandshakeResponse) decode(pd packetDecoder, version int16) error {
 		return err
 	}
 
-	r.Err = KError(kerr)
+	r.Err = KErrorWithStacktrace(kerr)
 
 	if r.EnabledMechanisms, err = pd.getStringArray(); err != nil {
 		return err

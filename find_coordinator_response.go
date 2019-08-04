@@ -29,7 +29,7 @@ func (f *FindCoordinatorResponse) decode(pd packetDecoder, version int16) (err e
 	if err != nil {
 		return err
 	}
-	f.Err = KError(tmp)
+	f.Err = KErrorWithStacktrace(tmp)
 
 	if version >= 1 {
 		if f.ErrMsg, err = pd.getNullableString(); err != nil {

@@ -57,7 +57,7 @@ func (r *ApiVersionsResponse) decode(pd packetDecoder, version int16) error {
 		return err
 	}
 
-	r.Err = KError(kerr)
+	r.Err = KErrorWithStacktrace(kerr)
 
 	numBlocks, err := pd.getArrayLength()
 	if err != nil {

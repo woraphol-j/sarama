@@ -14,7 +14,7 @@ func (pm *PartitionMetadata) decode(pd packetDecoder, version int16) (err error)
 	if err != nil {
 		return err
 	}
-	pm.Err = KError(tmp)
+	pm.Err = KErrorWithStacktrace(tmp)
 
 	pm.ID, err = pd.getInt32()
 	if err != nil {
@@ -83,7 +83,7 @@ func (tm *TopicMetadata) decode(pd packetDecoder, version int16) (err error) {
 	if err != nil {
 		return err
 	}
-	tm.Err = KError(tmp)
+	tm.Err = KErrorWithStacktrace(tmp)
 
 	tm.Name, err = pd.getString()
 	if err != nil {

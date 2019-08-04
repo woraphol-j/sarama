@@ -111,7 +111,7 @@ func (t *TopicError) decode(pd packetDecoder, version int16) (err error) {
 	if err != nil {
 		return err
 	}
-	t.Err = KError(kErr)
+	t.Err = KErrorWithStacktrace(kErr)
 
 	if version >= 1 {
 		if t.ErrMsg, err = pd.getNullableString(); err != nil {

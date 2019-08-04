@@ -95,7 +95,7 @@ func (t *TopicPartitionError) decode(pd packetDecoder, version int16) (err error
 	if err != nil {
 		return err
 	}
-	t.Err = KError(kerr)
+	t.Err = KErrorWithStacktrace(kerr)
 
 	if t.ErrMsg, err = pd.getNullableString(); err != nil {
 		return err

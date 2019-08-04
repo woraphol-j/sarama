@@ -80,7 +80,7 @@ func (a *AclCreationResponse) decode(pd packetDecoder, version int16) (err error
 	if err != nil {
 		return err
 	}
-	a.Err = KError(kerr)
+	a.Err = KErrorWithStacktrace(kerr)
 
 	if a.ErrMsg, err = pd.getNullableString(); err != nil {
 		return err

@@ -22,7 +22,7 @@ func (r *SyncGroupResponse) decode(pd packetDecoder, version int16) (err error) 
 		return err
 	}
 
-	r.Err = KError(kerr)
+	r.Err = KErrorWithStacktrace(kerr)
 
 	r.MemberAssignment, err = pd.getBytes()
 	return

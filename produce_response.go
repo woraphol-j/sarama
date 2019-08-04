@@ -17,7 +17,7 @@ func (b *ProduceResponseBlock) decode(pd packetDecoder, version int16) (err erro
 	if err != nil {
 		return err
 	}
-	b.Err = KError(tmp)
+	b.Err = KErrorWithStacktrace(tmp)
 
 	b.Offset, err = pd.getInt64()
 	if err != nil {

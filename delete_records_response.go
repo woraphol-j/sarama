@@ -152,7 +152,7 @@ func (t *DeleteRecordsResponsePartition) decode(pd packetDecoder, version int16)
 	if err != nil {
 		return err
 	}
-	t.Err = KError(kErr)
+	t.Err = KErrorWithStacktrace(kErr)
 
 	return nil
 }

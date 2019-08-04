@@ -29,7 +29,7 @@ func (i *InitProducerIDResponse) decode(pd packetDecoder, version int16) (err er
 	if err != nil {
 		return err
 	}
-	i.Err = KError(kerr)
+	i.Err = KErrorWithStacktrace(kerr)
 
 	if i.ProducerID, err = pd.getInt64(); err != nil {
 		return err
