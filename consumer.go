@@ -999,6 +999,8 @@ func (bc *brokerConsumer) handleResponses() {
 			// not an error, but does need redispatching
 			Logger.Printf("consumer/broker/%d abandoned subscription to %s/%d because %s\n",
 				bc.broker.ID(), child.topic, child.partition, result)
+			fmt.Printf("[%s] ❌❌❌ consumer/broker/%d abandoned subscription to %s/%d because %s\n",
+				time.Now().Format(time.RFC3339), bc.broker.ID(), child.topic, child.partition, result)
 			child.trigger <- none{}
 			delete(bc.subscriptions, child)
 		default:

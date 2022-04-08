@@ -344,6 +344,7 @@ func (om *offsetManager) handleResponse(broker *Broker, req *OffsetCommitRequest
 				ErrConsumerCoordinatorNotAvailable, ErrNotCoordinatorForConsumer:
 				// not a critical error, we just need to redispatch
 				om.releaseCoordinator(broker)
+				fmt.Printf("[%s] ❌❌❌ failed with getNoLeader when committing offset", time.Now().Format(time.RFC3339))
 			case ErrOffsetMetadataTooLarge, ErrInvalidCommitOffsetSize:
 				// nothing we can do about this, just tell the user and carry on
 				pom.handleError(err)
