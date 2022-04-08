@@ -522,7 +522,9 @@ func (b *Broker) LeaveGroup(request *LeaveGroupRequest) (*LeaveGroupResponse, er
 func (b *Broker) Heartbeat(request *HeartbeatRequest) (*HeartbeatResponse, error) {
 	response := new(HeartbeatResponse)
 
+	fmt.Printf("[%s] ❤️❤️❤️️ ➔➔➔ ️️️️heartbeat sent with request = %+v \n", time.Now().Format(time.RFC3339), request)
 	err := b.sendAndReceive(request, response)
+	fmt.Printf("[%s] ❤️❤️❤️ ️️️️⬅⬅⬅ ️heartbeat returned with response = %+v \n", time.Now().Format(time.RFC3339), response)
 	if err != nil {
 		return nil, err
 	}

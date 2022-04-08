@@ -408,6 +408,7 @@ func (c *consumerGroup) joinGroupRequest(coordinator *Broker, topics []string) (
 	if err := req.AddGroupProtocolMetadata(strategy.Name(), meta); err != nil {
 		return nil, err
 	}
+	fmt.Printf("[%s] 🏃🏃🏃 Trying to join group with request =%+v \n", time.Now().Format(time.RFC3339), req)
 
 	return coordinator.JoinGroup(req)
 }
@@ -826,6 +827,7 @@ func (s *consumerGroupSession) heartbeatLoop() {
 			s.MemberID(), s.GenerationID())
 	}()
 
+	fmt.Printf("⚙️⚙️⚙️ Heartbeat interval is %+v \n", s.parent.config.Consumer.Group.Heartbeat.Interval)
 	pause := time.NewTicker(s.parent.config.Consumer.Group.Heartbeat.Interval)
 	defer pause.Stop()
 

@@ -1,6 +1,7 @@
 package sarama
 
 import (
+	"fmt"
 	"sync"
 	"time"
 )
@@ -261,11 +262,13 @@ func (om *offsetManager) flushToBroker() {
 
 	resp, err := broker.CommitOffset(req)
 	if err != nil {
+		fmt.Printf("[%s] ❌❌❌ Failed to flush offset to broker err=%+v \n", time.Now().Format(time.RFC3339), err)
 		om.handleError(err)
 		om.releaseCoordinator(broker)
 		_ = broker.Close()
 		return
 	}
+	fmt.Printf("[%s] ✅✅✅ Flushed offset to broker req=%+v \n", time.Now().Format(time.RFC3339), req)
 
 	om.handleResponse(broker, req, resp)
 }
@@ -341,6 +344,7 @@ func (om *offsetManager) handleResponse(broker *Broker, req *OffsetCommitRequest
 				ErrConsumerCoordinatorNotAvailable, ErrNotCoordinatorForConsumer:
 				// not a critical error, we just need to redispatch
 				om.releaseCoordinator(broker)
+				fmt.Printf("[%s] ❌❌❌ failed with getNoLeader when committing offset", time.Now().Format(time.RFC3339))
 			case ErrOffsetMetadataTooLarge, ErrInvalidCommitOffsetSize:
 				// nothing we can do about this, just tell the user and carry on
 				pom.handleError(err)
